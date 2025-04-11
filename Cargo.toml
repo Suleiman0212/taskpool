@@ -1,0 +1,9 @@
+[package]
+name = "taskpool"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = { version = "1.42.1", features = ["rt-multi-thread", "macros", "sync"] }
+async-trait = "0.1.88"
+reqwest = "0.12.15"
