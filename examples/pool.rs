@@ -1,12 +1,7 @@
 #![allow(unused)]
 
 use std::time::Instant;
-
-use error::PoolError;
-use pool::{Pool, Task, execution::ExecutionOut};
-
-mod error;
-mod pool;
+use taskpool::pool::*;
 
 #[derive(Debug)]
 pub struct PrimeTask {
@@ -46,14 +41,12 @@ fn is_prime(n: u64) -> bool {
 }
 
 #[tokio::main]
-async fn main() -> Result<(), PoolError> {
+async fn main() {
     let mut pool = Pool::new();
     for i in 0..1000000 {
         let task = PrimeTask::new(i);
         pool.add_task(task);
     }
 
-    Pool::execute(pool).await?;
-
-    Ok(())
+    Pool::execute(pool).await.unwrap();
 }

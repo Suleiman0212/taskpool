@@ -25,6 +25,10 @@ impl Pool {
     fn next_task(&mut self) -> TaskWrapped {
         self.tasks.pop()
     }
+
+    pub fn is_empty(&self) -> bool {
+        self.tasks.is_empty()
+    }
 }
 
 pub trait Task: Send {
